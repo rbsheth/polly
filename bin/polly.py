@@ -263,12 +263,12 @@ else:
 if toolchain_entry.name.startswith('mingw'):
   mingw_path = os.getenv("MINGW_PATH")
   detail.verify_mingw_path.verify(mingw_path)
-  os.environ['PATH'] = "{};{}".format(mingw_path, os.getenv('PATH'))
+  os.environ['MSYS2_PATH_TYPE'] = 'inherit'
 
 if toolchain_entry.name.startswith('msys'):
   msys_path = os.getenv("MSYS_PATH")
   detail.verify_msys_path.verify(msys_path)
-  os.environ['PATH'] = "{};{}".format(msys_path, os.getenv('PATH'))
+  os.environ['MSYS2_PATH_TYPE'] = 'inherit'
 
 vs_ninja = toolchain_entry.is_ninja and toolchain_entry.vs_version
 if toolchain_entry.is_nmake or vs_ninja:
